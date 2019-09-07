@@ -34,80 +34,6 @@ RSpec.describe Jekyll::SeoTag do
     expect(status).to eql(true)
   end
 
-  context "with page.title" do
-    let(:page) { make_page("title" => "foo") }
-
-    it "builds the title with a page title only" do
-      expect(output).to match(%r!<title>foo</title>!)
-      expected = %r!<meta property="og:title" content="foo" />!
-      expect(output).to match(expected)
-    end
-
-    context "with site.name" do
-      let(:site) { make_site("name" => "Site Name") }
-
-      it "builds the title with a page title and site name" do
-        expect(output).to match(%r!<title>foo \| Site Name</title>!)
-      end
-    end
-
-    context "with site.title" do
-      let(:site) { make_site("title" => "bar") }
-
-      it "builds the title with a page title and site title" do
-        expect(output).to match(%r!<title>foo \| bar</title>!)
-      end
-    end
-
-    context "with site.description" do
-      let(:site) { make_site("description" => "Site Description") }
-
-      it "builds the title without the site description" do
-        expect(output).not_to match(%r!<title>foo \| Site Description</title>!)
-      end
-    end
-
-    context "with site.title and site.description" do
-      let(:site) { make_site("title" => "Site Title", "description" => "Site Description") }
-
-      it "builds the title with a page title and site title" do
-        expect(output).to match(%r!<title>foo \| Site Title</title>!)
-      end
-
-      it "does not build the title with the site description" do
-        expect(output).not_to match(%r!<title>foo \| Site Description</title>!)
-      end
-    end
-
-    context "with site.title and site.description" do
-      let(:site) { make_site("title" => "Site Title", "description" => "Site Description") }
-
-      it "builds the title with a page title and site title" do
-        expect(output).to match(%r!<title>foo \| Site Title</title>!)
-      end
-
-      it "does not build the title with the site description" do
-        expect(output).not_to match(%r!<title>Page Title \| Site Description</title>!)
-      end
-    end
-  end
-
-  context "with site.title" do
-    let(:site) { make_site("title" => "Site title") }
-
-    it "builds the title with only a site title" do
-      expect(output).to match(%r!<title>Site title</title>!)
-    end
-  end
-
-  context "with site.title and site.description" do
-    let(:site) { make_site("title" => "Site Title", "description" => "Site Description") }
-
-    it "builds the title with site title and description" do
-      expect(output).to match(%r!<title>Site Title \| Site Description</title>!)
-    end
-  end
-
   context "with page.description" do
     let(:page) { make_page("description" => "foo") }
 
@@ -294,7 +220,6 @@ RSpec.describe Jekyll::SeoTag do
 
       it "minifies the output" do
         expected = <<~HTML
-          <title>Foo</title>
           <meta property="og:title" content="Foo" />
           <meta property="og:locale" content="en_US" />
           <link rel="canonical" href="http://example.invalid/page.html" />
