@@ -20,8 +20,8 @@ RSpec.describe Jekyll::SeoTag do
     expect(output).to match('<meta property="og:locale"')
   end
 
-  it "outputs meta generator" do
-    expect(output).to match(%r!Jekyll v#{Jekyll::VERSION}!i)
+  it "does not output a meta generator tag" do
+    expect(output).not_to match('<meta name="generator"')
   end
 
   it "outputs valid HTML" do
@@ -295,7 +295,6 @@ RSpec.describe Jekyll::SeoTag do
       it "minifies the output" do
         expected = <<~HTML
           <title>Foo</title>
-          <meta name="generator" content="Jekyll v#{Jekyll::VERSION}" />
           <meta property="og:title" content="Foo" />
           <meta property="og:locale" content="en_US" />
           <link rel="canonical" href="http://example.invalid/page.html" />
