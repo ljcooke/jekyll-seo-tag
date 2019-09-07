@@ -46,7 +46,7 @@ RSpec.describe Jekyll::SeoTag do
   end
 
   it "renders" do
-    expected = "<!-- Begin Jekyll SEO tag v#{described_class::VERSION} -->"
+    expected = '<meta property="og:locale"'
     expect(rendered).to match(expected)
   end
 end

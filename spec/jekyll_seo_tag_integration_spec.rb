@@ -17,12 +17,7 @@ RSpec.describe Jekyll::SeoTag do
   end
 
   it "builds" do
-    expect(output).to match(%r!Jekyll SEO tag!i)
-  end
-
-  it "outputs the plugin version" do
-    version = Jekyll::SeoTag::VERSION
-    expect(output).to match(%r!Jekyll SEO tag v#{version}!i)
+    expect(output).to match('<meta property="og:locale"')
   end
 
   it "outputs meta generator" do
@@ -298,9 +293,7 @@ RSpec.describe Jekyll::SeoTag do
       end
 
       it "minifies the output" do
-        version = Jekyll::SeoTag::VERSION
         expected = <<~HTML
-          <!-- Begin Jekyll SEO tag v#{version} -->
           <title>Foo</title>
           <meta name="generator" content="Jekyll v#{Jekyll::VERSION}" />
           <meta property="og:title" content="Foo" />
