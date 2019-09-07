@@ -5,6 +5,7 @@
 /coverage/
 /doc/
 /pkg/
+/spec/fixtures/.jekyll-cache/
 /spec/reports/
 /tmp/
 /bin/
